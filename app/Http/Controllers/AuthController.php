@@ -61,8 +61,18 @@ class AuthController extends Controller
             // $success['token'] =  $petugas->createToken('MyApp',['admin'])->accessToken; 
             
             return response()->json($success, 200);
+        }else if(auth()->guard('api')->attempt($validator->validated())){ 
+            config(['auth.guards.api.provider' => 'api2']);
+            
+            $driver = Driver::select('tb_driver.*')->find(auth()->guard('api')->user()->id_driver);
+            $success =  $driver;
+            // $success['token'] =  $petugas->createToken('MyApp',['admin'])->accessToken; 
+            
+            return response()->json($success, 200);
+            
+        }else{
+            return response()->json(['error' => ['Email and Password are Wrong.']], 200);
         }
-    
 
         return $this->createNewToken($token);
     }
