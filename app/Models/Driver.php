@@ -24,9 +24,9 @@ class Driver extends  Authenticatable implements JWTSubject
         // 'email',
         // 'password',
         'nama_driver',
-        'User',
+        'user',
         'password',
-        'id_driver',
+        // 'id_driver',
         'no_ktp',
     ];
 

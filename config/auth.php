@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Contracts\Auth\UserProvider;
 
 
 return [
@@ -45,6 +46,16 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // 'api' =>[
+        //     'driver' => 'jwt',
+        //     'provider' => 'users',
+        //     'hash' => false,
+        // ],
+        'api2' => [
+            'driver' => 'jwt',
+            'provider' => 'petugas',
+            'hash' => false,
+        ],
         'api' =>[
             'driver' => 'jwt',
             'provider' => 'users',
@@ -70,17 +81,18 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Driver::class,
+            'users' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\Driver::class,
+            
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-    ],
-
+        'petugas' => [
+                    'driver' => 'eloquent',
+                    'model' => App\Models\Petugas::class,  
+        ]
+       
+        ],
+    
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -103,6 +115,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        // 'petugas' => [
+        //     'provider' => 'petugas',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
     ],
 
     /*
